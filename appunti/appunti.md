@@ -1,4 +1,4 @@
-# Git TPSITI
+# Git TPSIT
 
 ##  Spiegazione
 In questo esercizio ho imparato a usare **Git** e **GitHub** per gestire un progetto Python con più file e branch.
@@ -7,70 +7,51 @@ Il progetto si chiama **TPSITI** e contiene tre file principali all’interno de
 - `veicolo.py`
 - `auto.py`
 - `moto.py`
+# Descrizione dell'ultimo lavoro versionato su GitHub
 
----
 
-## 🪜 Passaggi svolti
+## attività svolte
 
-### 1️⃣ Creazione del progetto e configurazione iniziale
-Ho creato una nuova cartella chiamata `TPSITI` e all’interno di essa una sottocartella `CLASSI`.
+- **Creazione repository**: inizializzato `git`, creato repository remoto su GitHub.
+- **Branching**: creato un branch `moto` per lo sviluppo della classe `Moto`, poi fuso in `main` dopo i test.
+- **Correzione di errori**: ho annullato un commit errato usando `git reset` e sincronizzato con `push --force-with-lease`.
+
+### Struttura principale del progetto
+
+`CLASSI/`
+
+- `auto.py` — implementa la classe Auto
+- `veicolo.py` — classe base Veicolo
+- `moto.py` — classe Moto (aggiunta sul branch `moto` e poi integrata)
+
+## Dettagli operativi (comandi principali usati)
+
+1. Configurazione autore e creazione cartelle
 
 ```bash
-mkdir CLASSI
 git config --global user.name "AlbertoBruscolini"
 git config --global user.email "alberto.bruscolini@studenti.isissgobetti.it"
+mkdir CLASSI
 ```
 
-Ho poi verificato il collegamento al repository remoto su GitHub:
+2. Aggiunta, commit e push
 
 ```bash
-git remote -v
+git add CLASSI/
+git commit -m "Aggiungo le classi base"
+git push origin main
 ```
 
-Tutto risultava corretto: il repository remoto puntava a  
-`https://github.com/AlbertoBruscolini/TPSITI1.git`.
-
----
-
-### 2️⃣ Aggiunta dei primi file e primo commit
-Ho creato i file `veicolo.py` e `auto.py` dentro `CLASSI/`, poi li ho aggiunti e committati.
-
-```bash
-git add *
-git commit -m "Aggiungo Classi"
-git push
-```
-
- Questo ha caricato i file sul branch principale (`main`) su GitHub.
-
----
-
-### 3️⃣ Creazione di un nuovo branch per “Moto”
-Ho creato un branch dedicato per aggiungere la classe `Moto`:
+3. Creazione branch e push remoto del branch
 
 ```bash
 git checkout -b moto
-```
-
-Ho poi aggiunto e committato il nuovo file:
-
-```bash
-git add *
-git commit -m "Aggiunto Moto"
-```
-
-Quando ho provato a fare il push, inizialmente ho ricevuto un errore (“no upstream branch”), ma poi ho risolto con:
-
-```bash
+git add CLASSI/moto.py
+git commit -m "Aggiunta classe Moto"
 git push -u origin moto
 ```
 
-✅ Questo ha creato il branch remoto `moto` su GitHub.
-
----
-
-### 4️⃣ Merge e sincronizzazione
-Dopo aver verificato che tutto funzionava sul branch `moto`, sono tornato su `main` e ho unito le modifiche:
+4. Merge in `main` e sincronizzazione
 
 ```bash
 git checkout main
@@ -78,31 +59,30 @@ git merge moto
 git push
 ```
 
-✅ Ora anche il branch `main` contiene il file `moto.py`.
-
----
-
-### 5️⃣ Correzione di un commit errato
-Durante le prove, ho fatto per sbaglio un commit errato.  
-Per eliminarlo ho usato:
+5. Ripristino di un commit errato 
 
 ```bash
 git reset --hard HEAD~1
 git push --force-with-lease
 ```
 
-✅ Così ho annullato l’ultimo commit sia in locale che su remoto.
+## Note aggiuntive
 
+Spiego alcune decisioni prese durante il lavoro:[^1][^2]
 
----
+[^1]: Ho usato il reset con `--hard` solo dopo essermi assicurato che la versione corretta fosse salvata altrove; l'uso di `--hard` può causare perdita di dati locali.
+[^2]: Per evitare conflitti con altri collaboratori, è preferibile usare `git revert` quando si lavora in team.
 
-## Stato finale progetto
-Alla fine, il branch `main` contiene tutti e tre i file:
+## Checklist — 3 domande (spuntare la risposta corretta)
 
-```
-CLASSI/
- ├── auto.py
- ├── veicolo.py
- └── moto.py
-```
+1. Hai effettuato il push dell'ultimo commit sul repository remoto?
+	- [ ] Sì
+	- [ ] No
 
+2. Hai creato e testato le modifiche sul branch `moto` prima del merge?
+	- [ ] Sì
+	- [ ] No
+
+3. Hai aggiornato il `README.md` con istruzioni per eseguire il progetto?
+	- [ ] Sì
+	- [ ] No
